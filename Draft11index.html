@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Muhammad Iman Irfan | Portfolio Resume</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    /* RESET */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: radial-gradient(circle at top left, #141e30, #243b55);
+      color: #fff;
+      overflow-x: hidden;
+      line-height: 1.7;
+      scroll-behavior: smooth;
+    }
+
+    /* VIDEO BACKGROUND */
+#bg-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* cover the whole header */
+  z-index: -1;       /* send video behind all elements */
+  filter: brightness(0.4); /* darken video so text stands out */
+}
+
+/* HEADER */
+header {
+  position: relative;
+  text-align: center;
+  padding: 100px 20px 60px;
+  overflow: hidden; /* ensure video stays within header */
+}
+
+    header img {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      border: 4px solid #00fff5;
+      object-fit: cover;
+      animation: float 4s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .typing {
+      font-size: 2rem;
+      color: #00fff5;
+      font-weight: 600;
+      border-right: 3px solid #00fff5;
+      white-space: nowrap;
+      overflow: hidden;
+      width: 0;
+      display: inline-block;
+      animation: typing 4s steps(40, end) 1s forwards, blink 0.8s infinite;
+    }
+
+    @keyframes typing { to { width: 100%; } }
+    @keyframes blink { 50% { border-color: transparent; } }
+
+    header p {
+      margin-top: 15px;
+      color: #ccc;
+      font-size: 1rem;
+    }
+
+    .btn {
+      background: linear-gradient(90deg, #00fff5, #ffcc70);
+      color: #141e30;
+      border: none;
+      padding: 10px 25px;
+      border-radius: 25px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform 0.3s;
+      margin-top: 20px;
+    }
+
+    .btn:hover {
+      transform: scale(1.05);
+    }
+
+    /* NAVBAR */
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      padding: 15px 0;
+      background: rgba(255, 255, 255, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(10px);
+    }
+
+    nav a {
+      color: #00fff5;
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: #ffcc70;
+      text-shadow: 0 0 10px #ffcc70;
+    }
+
+    /* SECTIONS */
+    section {
+      max-width: 900px;
+      margin: 60px auto;
+      padding: 40px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 20px;
+      box-shadow: 0 0 25px rgba(0, 255, 245, 0.2);
+      transform: translateY(50px);
+      opacity: 0;
+      transition: all 1.2s ease;
+    }
+
+    section.visible {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    h2 {
+      color: #ffcc70;
+      font-size: 1.6rem;
+      border-left: 5px solid #00fff5;
+      padding-left: 10px;
+      margin-bottom: 15px;
+    }
+
+    /* SKILLS */
+    .skill-name {
+      font-weight: 600;
+      margin-bottom: 5px;
+      display: flex;
+      justify-content: space-between; /* Push percentage to the right */
+      align-items: center;
+      gap: 10px;
+    }
+
+    .skill-name .percent {
+      color: #ffcc70;
+      font-weight: 500;
+    }
+
+    .icon {
+      color: #00fff5;
+      font-size: 18px;
+    }
+
+    .progress-bar {
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 20px;
+      overflow: hidden;
+      height: 20px;
+    }
+
+    .progress {
+      height: 100%;
+      width: 0;
+      background: linear-gradient(90deg, #00fff5, #ffcc70);
+      border-radius: 20px;
+      transition: width 1.8s ease-out;
+      box-shadow: 0 0 15px #00fff5;
+    }
+
+    /* REVEAL ANIMATION */
+    .reveal {
+      opacity: 0;
+      transform: translateX(-40px);
+      transition: all 0.8s ease-out;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    /* GAME BADGES */
+    .games {
+      list-style: none;
+      padding-left: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .game-badge {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 15px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 12px;
+      width: 200px; /* uniform slot width */
+      transition: 0.4s;
+      justify-content: flex-start;
+    }
+
+    .game-badge img {
+      width: 35px;
+      height: 35px;
+      border-radius: 5px;
+      object-fit: cover;
+    }
+
+    .game-badge:hover {
+      transform: scale(1.05);
+      background: rgba(0,255,245,0.15);
+    }
+
+    /* CONTACT */
+    footer, #contact p a {
+      color: #00fff5;
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px 0;
+      color: #ccc;
+      background: rgba(255, 255, 255, 0.05);
+      margin-top: 60px;
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header>
+  <!-- Video Background -->
+  <video autoplay muted loop id="bg-video">
+    <source src="background.mp4.mp4" type="video/mp4">
+    Your browser does not support HTML5 video.
+  </video>
+
+  <!-- Profile Image -->
+  <img src="iman.jpeg" alt="Muhammad Iman Irfan">
+
+  <!-- Name Typing Effect -->
+  <h1><span class="typing">Muhammad Iman Irfan Bin Faizu Rahman</span></h1>
+  <p>Information Management Undergraduate | Tech & Multimedia Enthusiast</p>
+</header>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#about">About</a>
+    <a href="#education">Education</a>
+    <a href="#skills">Skills</a>
+    <a href="#experience">Experience</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <!-- ABOUT -->
+  <section id="about" style="text-align: justify;">
+    <h2>About Me</h2>
+    <p>
+      Hi! I’m <strong>Muhammad Iman Irfan</strong>, born and raised in Malaysia, and currently pursuing my studies in 
+      Information Management with a strong passion for IT, multimedia design, and digital creativity. Throughout my 
+      academic journey at <strong>UiTM Merbok</strong>, I’ve always enjoyed exploring how technology and information 
+      systems contribute to modern digital development.
+      <br><br>
+      During my diploma, I discovered that I genuinely enjoy solving technical problems, working with computers, and 
+      creating clean and modern digital content. My internship at the Information Technology Unit of 
+      <strong>Hospital Sultan Abdul Halim</strong> strengthened my skills further, where I handled system support, 
+      technical troubleshooting, hardware installation, and day-to-day IT operations behind the scenes. The experience 
+      helped me grow into someone more confident, responsible, and adaptable.
+      <br><br>
+      Outside of academics, I’m a laid-back person who enjoys gaming especially <strong>EFootball</strong> and 
+      <strong>Mobile Legends</strong> and I love experimenting with design tools like Canva, basic web development, 
+      and multimedia editing to sharpen my creativity.
+    </p>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <h2>Education</h2>
+    <ul>
+      <li><strong>2012-2017</strong> — Sekolah Rendah Al-Islah, Pinang Tunggal.</li>
+      <li><strong>2018-2023</strong> - Sekolah Menengah Agama Nahdzah, Bukit Besar.</li>
+      <li><strong>2023-Now</strong> - Diploma in Information Management, UiTM Merbok, Kedah.</li>
+    </ul>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <h2>Skills</h2>
+
+    <div class="skill reveal">
+      <div class="skill-name"><i class="icon fas fa-file-word"></i> Microsoft Word <span class="percent">98%</span></div>
+      <div class="progress-bar"><div class="progress" data-progress="98%"></div></div>
+    </div>
+
+    <div class="skill reveal">
+      <div class="skill-name"><i class="icon fas fa-file-powerpoint"></i> Microsoft PowerPoint <span class="percent">95%</span></div>
+      <div class="progress-bar"><div class="progress" data-progress="95%"></div></div>
+    </div>
+
+    <div class="skill reveal">
+      <div class="skill-name"><i class="icon fas fa-paint-brush"></i> Canva <span class="percent">92%</span></div>
+      <div class="progress-bar"><div class="progress" data-progress="92%"></div></div>
+    </div>
+
+    <div class="skill reveal">
+      <div class="skill-name"><i class="icon fas fa-comments"></i> Communication <span class="percent">90%</span></div>
+      <div class="progress-bar"><div class="progress" data-progress="90%"></div></div>
+    </div>
+
+    <div class="skill reveal">
+      <div class="skill-name"><i class="icon fas fa-code"></i> HTML <span class="percent">85%</span></div>
+      <div class="progress-bar"><div class="progress" data-progress="85%"></div></div>
+    </div>
+
+    <br><br>
+    <h2>Languages</h2>
+
+    <div class="skill reveal">
+      <div class="skill-name"><i class="icon fas fa-flag"></i> Bahasa Melayu <span class="percent">100%</span></div>
+      <div class="progress-bar"><div class="progress" data-progress="100%"></div></div>
+    </div>
+
+    <div class="skill reveal">
+      <div class="skill-name"><i class="icon fas fa-flag-usa"></i> English <span class="percent">60%</span></div>
+      <div class="progress-bar"><div class="progress" data-progress="60%"></div></div>
+    </div>
+
+    <div class="skill reveal">
+      <div class="skill-name"><i class="icon fas fa-mosque"></i> Arabic <span class="percent">50%</span></div>
+      <div class="progress-bar"><div class="progress" data-progress="50%"></div></div>
+    </div>
+
+    <br><br>
+    <h2>Favourite Games</h2>
+    <ul class="games">
+      <li class="game-badge reveal"><img src="efootball_kv.jpg" alt="EFootball"> EFootball</li>
+      <li class="game-badge reveal"><img src="online-mobile-legends-guide.webp" alt="Mobile Legends"> Mobile Legends</li>
+    </ul>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience" style="text-align: justify;">
+    <h2>Experience</h2>
+    <ul>
+      <li><strong>Primary School – Sekolah Rendah Al-Islah, Pinang Tunggal</strong><br>
+        During my time in primary school, I held the position of a school prefect, where I developed a sense of responsibility and leadership. I actively participated in various competitions, particularly in nasyid performances, representing my school and achieving recognition at the national level.</li>
+
+      <li><strong>Secondary School – Sekolah Menengah Agama Nahdzah, Bukit Besar</strong><br>
+        In secondary school, I continued to build on my leadership experience by serving as the head prefect of the school. I was also actively involved in sports, particularly volleyball, competing at the state level. These experiences taught me teamwork, discipline, and time management.</li>
+
+      <li><strong>Diploma – UiTM Merbok, Kedah</strong><br>
+        Currently pursuing a Diploma in Information Management, I completed an 8-week internship at the Information Technology Unit of <strong>Hospital Sultan Abdul Halim</strong>. During this internship, I gained hands-on experience in system management, troubleshooting technical issues, assisting in data handling, and understanding IT operations in a professional healthcare environment. This experience significantly enhanced my technical skills and professional confidence.</li>
+    </ul>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <h2>Contact</h2>
+    <p><i class="fas fa-envelope"></i> <strong>Email:</strong> <a href="mailto:iman.faizu0224@gmail.com">iman.faizu0224@gmail.com</a></p>
+    <p><i class="fas fa-phone"></i> <strong>Phone:</strong> <a href="tel:+60102309965">+60 10-230 9965</a></p>
+    <p><i class="fab fa-instagram"></i> <strong>Instagram:</strong> <a href="https://instagram.com/kemannz" target="_blank">@kemannz</a></p>
+    <p><i class="fab fa-github"></i> <strong>GitHub:</strong> <a href="https://github.com/kemannz/kemannz.github.io" target="_blank">github.com/kemannz</a></p>
+  </section>
+
+  <footer>
+    <p>© 2025 Muhammad Iman Irfan. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Reveal Sections
+    const sections = document.querySelectorAll('section');
+    const reveal = () => {
+      sections.forEach(sec => {
+        const top = sec.getBoundingClientRect().top;
+        if (top < window.innerHeight - 100) sec.classList.add('visible');
+      });
+    };
+    window.addEventListener('scroll', reveal);
+    reveal();
+
+    // Animate Progress Bars & Reveal Items
+    const revealItems = document.querySelectorAll('.reveal');
+    const revealOnScroll = () => {
+      let delay = 0;
+      revealItems.forEach(item => {
+        const top = item.getBoundingClientRect().top;
+        if (top < window.innerHeight - 100 && !item.classList.contains('visible')) {
+          setTimeout(() => {
+            item.classList.add('visible');
+            const bar = item.querySelector('.progress');
+            if (bar) bar.style.width = bar.dataset.progress;
+          }, delay);
+          delay += 200;
+        }
+      });
+    };
+    window.addEventListener('scroll', revealOnScroll);
+    revealOnScroll();
+  </script>
+
+</body>
+</html>
